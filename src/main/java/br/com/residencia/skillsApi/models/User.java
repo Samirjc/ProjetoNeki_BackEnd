@@ -1,14 +1,12 @@
 package br.com.residencia.skillsApi.models;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -26,22 +24,17 @@ public class User {
 	@Column
 	private LocalDate lastLoginDate;
 	
-	@OneToMany(mappedBy = "user")
-	private List<UserSkill> userSkill;
-	
 	
 	public User() {
 		super();
 	}
 
-
-	public User(Integer id, String login, String password, LocalDate lastLoginDate, List<UserSkill> userSkill) {
+	public User(Integer id, String login, String password, LocalDate lastLoginDate) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.lastLoginDate = lastLoginDate;
-		this.userSkill = userSkill;
 	}
 
 
@@ -82,15 +75,5 @@ public class User {
 
 	public void setLastLoginDate(LocalDate lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
-	}
-
-
-	public List<UserSkill> getUserSkill() {
-		return userSkill;
-	}
-
-
-	public void setUserSkill(List<UserSkill> userSkill) {
-		this.userSkill = userSkill;
 	}
 }

@@ -1,13 +1,10 @@
 package br.com.residencia.skillsApi.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Skill {
@@ -28,24 +25,18 @@ public class Skill {
 	@Column
 	private String imageUrl;
 	
-	@OneToMany(mappedBy = "skill")
-	private List<UserSkill> userSkill;
-	
 	
 	public Skill() {
 		super();
 	}
 
-
-	public Skill(Integer id, String name, String version, String description, String imageUrl,
-			List<UserSkill> userSkill) {
+	public Skill(Integer id, String name, String version, String description, String imageUrl) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.version = version;
 		this.description = description;
 		this.imageUrl = imageUrl;
-		this.userSkill = userSkill;
 	}
 
 
@@ -96,15 +87,5 @@ public class Skill {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-
-	public List<UserSkill> getUserSkill() {
-		return userSkill;
-	}
-
-
-	public void setUserSkill(List<UserSkill> userSkill) {
-		this.userSkill = userSkill;
 	}
 }

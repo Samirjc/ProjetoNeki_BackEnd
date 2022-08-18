@@ -1,7 +1,10 @@
 package br.com.residencia.skillsApi.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +19,7 @@ import br.com.residencia.skillsApi.exceptions.NonExistingSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserSkillException;
 import br.com.residencia.skillsApi.mappers.UserSkillMapper;
+import br.com.residencia.skillsApi.models.Skill;
 import br.com.residencia.skillsApi.services.UserSkillService;
 
 @RestController
@@ -31,6 +35,11 @@ public class UserSkillController {
 	@PostMapping
 	public void create(@RequestBody UserSkillDTO dto) throws ExistingUserSkillException, NonExistingUserException, NonExistingSkillException {
 		userSkillService.create(userSkillMapper.UserSkillDtoToUserSkill(dto));
+	}
+	
+	@GetMapping("/user/{id}")
+	public List<Skill> findSkillsByUserId(@PathVariable Integer id) {
+		return userSkillService.findSkillsByUserId(id);
 	}
 	
 	@PutMapping("/{id}")

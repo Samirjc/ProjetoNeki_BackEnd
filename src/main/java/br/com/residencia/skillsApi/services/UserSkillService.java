@@ -1,6 +1,7 @@
 package br.com.residencia.skillsApi.services;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.residencia.skillsApi.exceptions.ExistingUserSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserSkillException;
+import br.com.residencia.skillsApi.models.Skill;
 import br.com.residencia.skillsApi.models.UserSkill;
 import br.com.residencia.skillsApi.repositories.UserSkillRepository;
 
@@ -27,6 +29,10 @@ public class UserSkillService {
 
 		userSkill.setCreatedAt(LocalDate.now());
 		userSkillRepository.save(userSkill);
+	}
+	
+	public List<Skill> findSkillsByUserId(Integer userId) {
+		return userSkillRepository.findSkillsByUserId(userId);
 	}
 	
 	public void update(Integer id, Integer level) throws NonExistingUserSkillException {
