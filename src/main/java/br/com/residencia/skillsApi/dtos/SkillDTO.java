@@ -1,50 +1,30 @@
-package br.com.residencia.skillsApi.models;
+package br.com.residencia.skillsApi.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-@Entity
-public class Skill {
+public class SkillDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skill_seq")
-	private Integer id;
-	
-	@Column
+	@NotNull
 	private String name;
 	
-	@Column
 	private String version;
 	
-	@Column
+	@NotNull
 	private String description;
 	
-	@Column
 	private String imageUrl;
 	
 	
-	public Skill() {
+	public SkillDTO() {
 		super();
 	}
 
-	public Skill(Integer id, String name, String version, String description, String imageUrl) {
+	public SkillDTO(@NotNull String name, String version, @NotNull String description, String imageUrl) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.version = version;
 		this.description = description;
 		this.imageUrl = imageUrl;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getName() {
