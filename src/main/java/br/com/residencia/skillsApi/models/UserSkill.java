@@ -1,6 +1,6 @@
 package br.com.residencia.skillsApi.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,62 +23,88 @@ public class UserSkill {
 	private Skill skill;
 	
 	@Column
-	private LocalDateTime createdAt;
+	private Integer knowledgeLevel;
 	
 	@Column
-	private LocalDateTime updatedAt;
+	private LocalDate createdAt;
+	
+	@Column
+	private LocalDate updatedAt;
 	
 	
 	public UserSkill() {
 		super();
 	}
 
-	public UserSkill(Integer id, User user, Skill skill, LocalDateTime createdAt, LocalDateTime updatedAt) {
+
+	public UserSkill(Integer id, User user, Skill skill, Integer knowledgeLevel, LocalDate createdAt,
+			LocalDate updatedAt) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.skill = skill;
+		this.knowledgeLevel = knowledgeLevel;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
 
 	public Integer getId() {
 		return id;
 	}
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public User getUser() {
 		return user;
 	}
 
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 
 	public Skill getSkill() {
 		return skill;
 	}
 
+
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 	}
 
-	public LocalDateTime getCreatedAt() {
+
+	public Integer getKnowledgeLevel() {
+		return knowledgeLevel;
+	}
+
+
+	public void setKnowledgeLevel(Integer knowledgeLevel) {
+		this.knowledgeLevel = knowledgeLevel;
+	}
+
+
+	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
+
+	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getUpdatedAt() {
+
+	public LocalDate getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
+
+	public void setUpdatedAt(LocalDate updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 }

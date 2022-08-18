@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.residencia.skillsApi.exceptions.ExistingUserException;
+import br.com.residencia.skillsApi.exceptions.NonExistingUserException;
 import br.com.residencia.skillsApi.models.User;
 import br.com.residencia.skillsApi.repositories.UserRepository;
 
@@ -24,5 +25,15 @@ public class UserService {
 		}
 		
 		userRepository.save(user);
+	}
+	
+	public User findById(Integer id) throws NonExistingUserException {
+		Optional<User> optional = userRepository.findById(id);
+		
+		if(optional.isEmpty()) {
+			throw new NonExistingUserException();
+		}
+		
+		return optional.get();
 	}
 }
