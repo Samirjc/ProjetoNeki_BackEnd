@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.residencia.skillsApi.dtos.UserSkillDTO;
+import br.com.residencia.skillsApi.dtos.UserSkillOutDTO;
 import br.com.residencia.skillsApi.exceptions.NonExistingSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserException;
 import br.com.residencia.skillsApi.models.UserSkill;
@@ -28,5 +29,15 @@ public class UserSkillMapper {
 		userSkill.setKnowledgeLevel(dto.getLevel());
 		
 		return userSkill;
+	}
+	
+	public UserSkillOutDTO userSkillToUserSkillOutDto(UserSkill userSkill) {
+		UserSkillOutDTO dto = new UserSkillOutDTO();
+		
+		dto.setId(userSkill.getId());
+		dto.setKnowledgeLevel(userSkill.getKnowledgeLevel());
+		dto.setSkill(userSkill.getSkill());
+		
+		return dto;
 	}
 }

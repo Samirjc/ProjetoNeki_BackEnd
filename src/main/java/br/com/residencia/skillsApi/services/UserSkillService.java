@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.residencia.skillsApi.exceptions.ExistingUserSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserSkillException;
-import br.com.residencia.skillsApi.models.Skill;
 import br.com.residencia.skillsApi.models.UserSkill;
 import br.com.residencia.skillsApi.repositories.UserSkillRepository;
 
@@ -31,7 +30,7 @@ public class UserSkillService {
 		userSkillRepository.save(userSkill);
 	}
 	
-	public List<Skill> findSkillsByUserId(Integer userId) {
+	public List<UserSkill> findSkillsByUserId(Integer userId) {
 		return userSkillRepository.findSkillsByUserId(userId);
 	}
 	

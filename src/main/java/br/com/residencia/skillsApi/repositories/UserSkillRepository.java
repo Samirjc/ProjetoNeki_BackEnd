@@ -15,6 +15,6 @@ public interface UserSkillRepository extends JpaRepository<UserSkill, Integer>{
 	@Query("SELECT us FROM UserSkill us WHERE us.user = ?1 AND us.skill = ?2")
 	Optional<UserSkill> findByUserSkill(User user, Skill skill);
 	
-	@Query("SELECT s FROM Skill s, UserSkill us WHERE us.user.id = ?1 AND us.skill = s")
-	List<Skill> findSkillsByUserId(Integer userId);
+	@Query("SELECT us FROM UserSkill us WHERE us.user.id = ?1")
+	List<UserSkill> findSkillsByUserId(Integer userId);
 }

@@ -1,6 +1,7 @@
 package br.com.residencia.skillsApi.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.residencia.skillsApi.dtos.UserSkillDTO;
+import br.com.residencia.skillsApi.dtos.UserSkillOutDTO;
 import br.com.residencia.skillsApi.dtos.UserSkillUpdateDTO;
 import br.com.residencia.skillsApi.exceptions.ExistingUserSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingSkillException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserException;
 import br.com.residencia.skillsApi.exceptions.NonExistingUserSkillException;
 import br.com.residencia.skillsApi.mappers.UserSkillMapper;
-import br.com.residencia.skillsApi.models.Skill;
 import br.com.residencia.skillsApi.services.UserSkillService;
 
 @RestController
@@ -38,8 +39,9 @@ public class UserSkillController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public List<Skill> findSkillsByUserId(@PathVariable Integer id) {
-		return userSkillService.findSkillsByUserId(id);
+	public List<UserSkillOutDTO> findSkillsByUserId(@PathVariable Integer id) {
+		List<UserSkillOutDTO> skills = userSkillService.findSkillsByUserId(id).stream().map(item -> userSkillMapper.userSkillToUserSkillOutDto(item)).collect(Collectors.toList());
+		return skills;
 	}
 	
 	@PutMapping("/{id}")

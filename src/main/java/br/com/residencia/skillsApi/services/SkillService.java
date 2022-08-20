@@ -1,5 +1,6 @@
 package br.com.residencia.skillsApi.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class SkillService {
 		}
 		
 		skillRepository.save(skill);
+	}
+	
+	public List<Skill> findAll() {
+		return skillRepository.findAll();
 	}
 	
 	public Skill findById(Integer id) throws NonExistingSkillException {
